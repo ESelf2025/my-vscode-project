@@ -15,15 +15,21 @@ import { useNavigate } from "react-router-dom";
 const currentUserId = "EDENSELFF";
 
 const biblePlans = [
-  { id: 1, title: "Trust in the Lord", duration: "10 videos", imageUrl: "/assets/plans/IMG_4699.jpg" },
-  { id: 2, title: "Anxiety to Peace", duration: "10 videos", imageUrl: "/assets/plans/peace.jpg" },
-  { id: 3, title: "Finding Your Identity", duration: "10 videos", imageUrl: "/assets/plans/identity.jpg" },
-  ...Array.from({ length: 12 }).map((_, i) => ({
-    id: i + 4,
-    title: "Not Alone, Never Were",
-    duration: "10 videos",
-    imageUrl: "/assets/plans/peace.jpg",
-  })),
+  { id: 1, title: "Made on Purpose", duration: "10 videos", imageUrl: "/assets/plans/IMG_4699.jpg" },
+  { id: 2, title: "Not Alone, Never Were", duration: "10 videos", imageUrl: "/assets/plans/peace.jpg" },
+  { id: 3, title: "Peace Over Panic", duration: "10 videos", imageUrl: "/assets/plans/identity.jpg" },
+  { id: 4, title: "What I Have Is Enough", duration: "10 videos", imageUrl: "/assets/plans/peace.jpg" },
+  { id: 5, title: "There’s Room for Me", duration: "10 videos", imageUrl: "/assets/plans/peace.jpg" },
+  { id: 6, title: "When Fire Flares Up", duration: "10 videos", imageUrl: "/assets/plans/peace.jpg" },
+  { id: 7, title: "When Everyone’s Looking", duration: "10 videos", imageUrl: "/assets/plans/peace.jpg" },
+  { id: 8, title: "When Tears Fall", duration: "10 videos", imageUrl: "/assets/plans/peace.jpg" },
+  { id: 9, title: "Can’t Stop Smiling", duration: "10 videos", imageUrl: "/assets/plans/peace.jpg" },
+  { id: 10, title: "Who Even Am I?", duration: "10 videos", imageUrl: "/assets/plans/peace.jpg" },
+  { id: 11, title: "This Joy is Real", duration: "10 videos", imageUrl: "/assets/plans/peace.jpg" },
+  { id: 12, title: "Held and Known", duration: "10 videos", imageUrl: "/assets/plans/peace.jpg" },
+  { id: 13, title: "Too Much All At Once", duration: "10 videos", imageUrl: "/assets/plans/peace.jpg" },
+  { id: 14, title: "I Messed Up", duration: "10 videos", imageUrl: "/assets/plans/peace.jpg" },
+  { id: 15, title: "Maybe This Time", duration: "10 videos", imageUrl: "/assets/plans/peace.jpg" },
 ];
 
 const postJoinedPlan = (plan) =>
@@ -50,6 +56,7 @@ function Watch() {
         orderBy("joinedAt", "desc"),
         limit(1)
       );
+      
       const snapshot = await getDocs(q);
       if (!snapshot.empty) {
         setPinnedPlan(snapshot.docs[0].data());

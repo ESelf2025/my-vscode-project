@@ -9,8 +9,10 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "./Firebase";
+import { useNavigate } from "react-router-dom";
 
 function Friends() {
+  const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [pollVotes, setPollVotes] = useState({ optionA: 0, optionB: 0 });
   const [hasVoted, setHasVoted] = useState(false);
@@ -82,6 +84,31 @@ function Friends() {
         >
           💕 Friends Feed
         </h2>
+      </div>
+
+      {/* Glow Bubble */}
+      <div
+        onClick={() => navigate("/journal")}
+        style={{
+          width: "160px",
+          height: "160px",
+          backgroundColor: "#d6b3ff", // Changed from blue to purple
+          borderRadius: "50%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontFamily: "'Chewy', cursive",
+          fontSize: "24px",
+          color: "#fff",
+          boxShadow: "0 0 30px #d1b3ff", // Changed from blue to purple
+          cursor: "pointer",
+          transition: "transform 0.2s ease-in-out",
+          margin: "20px auto",
+        }}
+        onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+        onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+      >
+        TAP TO JOURNAL
       </div>
 
       {/* Poll Section */}

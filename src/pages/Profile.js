@@ -281,88 +281,127 @@ const avatar = {
   width: "100px",
   height: "100px",
   borderRadius: "50%",
-  backgroundColor: "#fff",
+  backgroundColor: "rgba(255, 255, 255, 0.6)",
+  backdropFilter: "blur(10px)",
   margin: "0 auto 10px",
   fontSize: "40px",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   color: "#bbb",
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
 };
 
 const nameBanner = {
-  backgroundColor: "#f9ccf7",
+  background: "linear-gradient(135deg, #ffccf9, #fcc2ff)",
   color: "#cc33cc",
-  padding: "6px 14px",
-  borderRadius: "20px",
+  padding: "10px 20px",
+  borderRadius: "30px",
   fontWeight: "bold",
-  fontSize: "18px",
+  fontSize: "20px",
   letterSpacing: "2px",
   marginBottom: "10px",
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
 };
 
-const buttonRow = { display: "flex", justifyContent: "center", gap: "10px", marginBottom: "20px" };
-const bubbleRow  = { display: "flex", justifyContent: "center", gap: "40px", marginTop: "40px" };
+const buttonRow = {
+  display: "flex",
+  justifyContent: "center",
+  gap: "10px",
+  marginBottom: "20px",
+};
+
+const bubbleRow = {
+  display: "flex",
+  justifyContent: "center",
+  gap: "40px",
+  marginTop: "40px",
+};
 
 function pill(bg, color = "#444") {
   return {
-    backgroundColor: bg,
+    background: bg,
     color,
     border: "none",
-    padding: "10px 16px",
-    borderRadius: "20px",
+    padding: "12px 20px",
+    borderRadius: "30px",
     fontWeight: "bold",
     cursor: "pointer",
-    fontSize: "14px",
+    fontSize: "16px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    transition: "transform 0.2s, box-shadow 0.2s",
+    backdropFilter: "blur(10px)",
   };
 }
+
 function circle(bg) {
   return {
     width: "80px",
     height: "80px",
-    backgroundColor: bg,
+    background: bg,
     borderRadius: "50%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     fontSize: "26px",
     cursor: "pointer",
-    boxShadow: "0 2px 6px rgba(0,0,0,0.05)",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    transition: "transform 0.2s, box-shadow 0.2s",
+    backdropFilter: "blur(10px)",
   };
 }
 
 const searchBox = {
   padding: "12px",
   borderRadius: "30px",
-  border: "1px solid #ccc",
+  border: "1px solid rgba(255, 255, 255, 0.6)",
   width: "80%",
   marginBottom: "20px",
+  backdropFilter: "blur(10px)",
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
 };
 
 const inviteCard = {
-  backgroundColor: "#ffd6ea",
-  borderRadius: "50px",
+  background: "rgba(255, 255, 255, 0.6)",
+  borderRadius: "30px",
   maxWidth: "340px",
   margin: "0 auto",
   padding: "30px",
-  boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+  backdropFilter: "blur(10px)",
 };
-const inviteText = { fontSize: "16px", fontWeight: "bold", color: "#cc33cc", whiteSpace: "pre-line" };
 
-const monthHeader = { textAlign: "center", color: "#cc66cc", fontWeight: "bold" };
+const inviteText = {
+  fontSize: "16px",
+  fontWeight: "bold",
+  color: "#cc33cc",
+  whiteSpace: "pre-line",
+};
+
+const monthHeader = {
+  textAlign: "center",
+  color: "#cc66cc",
+  fontWeight: "bold",
+  fontSize: "18px",
+};
+
 const calendarGrid = {
   display: "grid",
   gridTemplateColumns: "repeat(7, 1fr)",
   gap: "6px",
   padding: "10px 20px",
 };
+
 const dateCell = (i) => ({
-  borderRadius: "12px",
+  borderRadius: "20px",
   padding: "10px 0",
   textAlign: "center",
   fontSize: "14px",
   cursor: "pointer",
+  transition: "transform 0.2s, box-shadow 0.2s",
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
 });
+
 const logColumn = {
   marginTop: "30px",
   display: "flex",
@@ -373,12 +412,15 @@ const logColumn = {
 
 function LogBox({ title, content, color }) {
   return (
-    <div style={{
-      backgroundColor: color,
-      padding: "16px",
-      borderRadius: "16px",
-      whiteSpace: "pre-line",
-    }}>
+    <div
+      style={{
+        background: color,
+        padding: "16px",
+        borderRadius: "20px",
+        whiteSpace: "pre-line",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+      }}
+    >
       <h4 style={{ marginBottom: "6px", color: "#333" }}>{title}</h4>
       <p style={{ fontSize: "14px", color: "#444" }}>{content}</p>
     </div>
@@ -391,36 +433,42 @@ const savedGrid = {
   gap: "20px",
   padding: "0 20px",
 };
+
 const savedThumb = {
   width: "100%",
   aspectRatio: "9/16",
-  borderRadius: "12px",
+  borderRadius: "20px",
   objectFit: "cover",
-  boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
 };
 
 function Modal({ children, onClose }) {
   return (
-    <div style={{
-      position: "fixed",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      backgroundColor: "rgba(0,0,0,0.3)",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      zIndex: 1000,
-    }}>
-      <div style={{
-        backgroundColor: "#fff0f5",
-        padding: "30px",
-        borderRadius: "20px",
-        maxWidth: "400px",
-        width: "90%",
-        boxShadow: "0 5px 15px rgba(0,0,0,0.2)",
-      }}>
+    <div
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgba(0,0,0,0.3)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex: 1000,
+      }}
+    >
+      <div
+        style={{
+          background: "rgba(255, 255, 255, 0.6)",
+          padding: "30px",
+          borderRadius: "30px",
+          maxWidth: "400px",
+          width: "90%",
+          boxShadow: "0 5px 15px rgba(0,0,0,0.2)",
+          backdropFilter: "blur(10px)",
+        }}
+      >
         <button
           onClick={onClose}
           style={{
@@ -442,9 +490,28 @@ function Modal({ children, onClose }) {
 const inputStyle = {
   width: "100%",
   padding: "10px",
-  borderRadius: "12px",
+  borderRadius: "20px",
   margin: "10px 0",
-  border: "1px solid #ccc",
+  border: "1px solid rgba(255, 255, 255, 0.6)",
+  backdropFilter: "blur(10px)",
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
 };
+
+/* Add fade-in animation using inline styles */
+const fadeInAnimation = {
+  animation: "fadeIn 0.5s ease-in-out",
+};
+
+/* Define keyframes for fade-in using inline styles */
+const keyframes = `
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+`;
+
+const styleElement = document.createElement("style");
+styleElement.textContent = keyframes;
+document.head.appendChild(styleElement);
 
 export default Profile;

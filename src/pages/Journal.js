@@ -21,7 +21,9 @@ function Journal() {
   const [voiceMemo, setVoiceMemo] = useState(null);
   const [isRecording, setIsRecording] = useState(false);
   const [mediaStream, setMediaStream] = useState(null);
+  const [recordedChunks, setRecordedChunks] = useState([]);
   const videoRef = useRef(null);
+  const mediaRecorderRef = useRef(null);
 
   useEffect(() => {
     const fetchEntries = async () => {
@@ -136,6 +138,57 @@ function Journal() {
     return () => stopWebcam();
   }, [isRecording]);
 
+  const startRecording = () => {
+    if (mediaStream) {
+      const mediaRecorder = new MediaRecorder(mediaStream);
+      mediaRecorderRef.current = mediaRecorder;
+
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          setRecordedChunks((prev) => [...prev, event.data]);
+        }
+      };
+
+      mediaRecorder.start();
+    }
+  };
+
+  const stopRecording = () => {
+    if (mediaRecorderRef.current) {
+      mediaRecorderRef.current.stop();
+      mediaRecorderRef.current = null;
+    }
+  };
+
+  const saveRecording = async () => {
+    if (recordedChunks.length > 0) {
+      const blob = new Blob(recordedChunks, { type: 'video/webm' });
+      const videoFile = new File([blob], `webcam-video-${Date.now()}.webm`, {
+        type: 'video/webm',
+      });
+
+      const videoRef = ref(storage, `journalVideos/${videoFile.name}`);
+      await uploadBytes(videoRef, videoFile);
+      const videoUrl = await getDownloadURL(videoRef);
+
+      const newEntry = {
+        videoUrl,
+        emotion: videoEmotion.toUpperCase(),
+        createdAt: serverTimestamp(),
+      };
+
+      await addDoc(collection(db, 'journalEntries'), newEntry);
+      setSavedEntries((prev) => [...prev, { ...newEntry, createdAt: new Date() }]);
+      setRecordedChunks([]);
+      setVideoEmotion('');
+
+      const match = allGuides.find((guide) =>
+        guide.keyword && videoEmotion.toLowerCase().includes(guide.keyword.toLowerCase())
+      );
+      setMatchedGuide(match || null);
+    }
+  };
+
   return (
     <div
   style={{
@@ -161,7 +214,6 @@ function Journal() {
           textAlign: "center",
         }}
       >
-        💭 Welcome back! Ready to open your diary?
       </div>
   
       {/* Inner "Page" Frame */}
@@ -179,37 +231,13 @@ function Journal() {
           gap: "40px",
         }}
       >
-        {/* TALK Button */}
-        <div
-          onClick={() => setMode("talk")}
-          style={{
-            width: "160px",
-            height: "160px",
-            backgroundColor: "#ffcce6",
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontFamily: "'Chewy', cursive",
-            fontSize: "24px",
-            color: "#fff",
-            boxShadow: "0 0 30px #ffb6d9",
-            cursor: "pointer",
-            transition: "transform 0.2s ease-in-out",
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-          onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-        >
-          TALK
-        </div>
-  
         {/* TYPE Button */}
         <div
           onClick={() => setMode("type")}
           style={{
             width: "160px",
             height: "160px",
-            backgroundColor: "#cce6ff",
+            backgroundColor: "#d6b3ff", // Changed from blue to purple
             borderRadius: "50%",
             display: "flex",
             alignItems: "center",
@@ -217,15 +245,15 @@ function Journal() {
             fontFamily: "'Chewy', cursive",
             fontSize: "24px",
             color: "#fff",
-            boxShadow: "0 0 30px #b3d1ff",
+            boxShadow: "0 0 30px #d1b3ff", // Changed from blue to purple
             cursor: "pointer",
             transition: "transform 0.2s ease-in-out",
           }}
           onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
           onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
         >
-          TYPE
-          </div>
+          TAP TO JOURNAL
+        </div>
 
         </div>
 
@@ -371,67 +399,112 @@ function Journal() {
 
       {/* TALK MODE */}
       {mode === "talk" && (
-        <div style={{ marginTop: "30px", textAlign: "center" }}>
-          <h2>🎙 Record or Upload Your Diary Video</h2>
-          <button
-            onClick={() => setIsRecording((prev) => !prev)}
+        <div style={{
+          marginTop: "30px",
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "20px",
+        }}>
+          <h2 style={{ fontFamily: "'Chewy', cursive", color: "#333" }}>🎥 Record or Upload Your Diary Video</h2>
+
+          <div
             style={{
-              marginBottom: "15px",
-              backgroundColor: isRecording ? "#ff6666" : "#66cc66",
-              color: "white",
-              padding: "10px 20px",
-              border: "none",
-              borderRadius: "25px",
-              cursor: "pointer",
-              fontWeight: "bold",
+              position: "relative",
+              width: "100%",
+              maxWidth: "300px",
+              aspectRatio: "9/16",
+              borderRadius: "16px",
+              overflow: "hidden",
+              boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
+              backgroundColor: "#000",
             }}
           >
-            {isRecording ? "Stop Webcam" : "Start Webcam"}
-          </button>
-          <div style={{ marginTop: "10px" }}>
             <video
               ref={videoRef}
               autoPlay
               muted
               style={{
                 width: "100%",
-                maxWidth: "360px",
-                borderRadius: "12px",
+                height: "100%",
                 objectFit: "cover",
               }}
             ></video>
           </div>
+
+          <div style={{ display: "flex", gap: "10px" }}>
+            <button
+              onClick={() => setIsRecording((prev) => !prev)}
+              style={{
+                backgroundColor: isRecording ? "#ff4d4d" : "#4caf50",
+                color: "white",
+                padding: "10px 20px",
+                border: "none",
+                borderRadius: "25px",
+                cursor: "pointer",
+                fontWeight: "bold",
+                transition: "background-color 0.3s ease",
+              }}
+            >
+              {isRecording ? "Stop Webcam" : "Start Webcam"}
+            </button>
+
+            <button
+              onClick={saveRecording}
+              style={{
+                backgroundColor: "#2196f3",
+                color: "white",
+                padding: "10px 20px",
+                border: "none",
+                borderRadius: "25px",
+                cursor: "pointer",
+                fontWeight: "bold",
+                transition: "background-color 0.3s ease",
+              }}
+            >
+              Save Recording
+            </button>
+          </div>
+
           <input
             type="file"
             accept="video/*"
             onChange={(e) => setVideoFile(e.target.files[0])}
-            style={{ marginTop: "10px" }}
+            style={{
+              marginTop: "10px",
+              padding: "10px",
+              borderRadius: "10px",
+              border: "1px solid #ccc",
+              width: "80%",
+            }}
           />
-          <div style={{ marginTop: "10px" }}>
-            <input
-              type="text"
-              placeholder="How are you feeling? (e.g. lonely)"
-              value={videoEmotion}
-              onChange={(e) => setVideoEmotion(e.target.value)}
-              style={{
-                padding: "10px",
-                borderRadius: "10px",
-                border: "1px solid #ccc",
-                width: "80%",
-              }}
-            />
-          </div>
+
+          <input
+            type="text"
+            placeholder="How are you feeling? (e.g. lonely)"
+            value={videoEmotion}
+            onChange={(e) => setVideoEmotion(e.target.value)}
+            style={{
+              padding: "10px",
+              borderRadius: "10px",
+              border: "1px solid #ccc",
+              width: "80%",
+            }}
+          />
+
           <button
             onClick={handleVideoUpload}
             style={{
               marginTop: "15px",
-              backgroundColor: "#ff99cc",
+              backgroundColor: "#ff4081",
               color: "white",
               padding: "10px 20px",
               border: "none",
               borderRadius: "25px",
               cursor: "pointer",
               fontWeight: "bold",
+              transition: "background-color 0.3s ease",
             }}
           >
             ⬆️ Upload Video
