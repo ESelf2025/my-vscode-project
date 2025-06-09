@@ -206,18 +206,21 @@ body, html {
 
 /* Ensure the navbar is fully responsive and wraps tabs when needed */
 .navbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
+  justify-content: space-evenly;
+  align-items: center;
   padding: 10px;
   background-color: #f3e0ff;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 0 auto;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .nav-link {
+  flex: 1;
+  text-align: center;
   padding: 8px 12px;
   border-radius: 8px;
   text-decoration: none;
@@ -250,5 +253,12 @@ body {
   .nav-link {
     font-size: 14px;
     padding: 6px 10px;
+  }
+}
+
+/* Hide the bottom navbar on desktop screens */
+@media (min-width: 1024px) {
+  .navbar {
+    display: none;
   }
 }
