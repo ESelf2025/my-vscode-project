@@ -165,11 +165,11 @@ body, html {
 
 /* Update navbar styles to use Tailwind CSS for clean and centered appearance on small screens */
 .navbar {
-  @apply flex flex-wrap justify-center gap-4 bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 p-4 rounded-lg shadow-lg;
+  @apply fixed bottom-0 w-full flex justify-evenly items-center p-4 bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 rounded-t-lg shadow-lg;
 }
 
 .nav-link {
-  @apply px-4 py-2 rounded-lg text-purple-900 font-bold text-sm transition-all;
+  @apply flex-1 text-center py-2 px-4 rounded-lg text-purple-900 font-bold text-sm transition-all;
 }
 
 .nav-link.active {
@@ -204,42 +204,11 @@ body, html {
   @apply max-w-full overflow-hidden;
 }
 
-/* Ensure the navbar is fully responsive and wraps tabs when needed */
-.navbar {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 10px;
-  background-color: #f3e0ff;
-  border-radius: 12px 12px 0 0;
-  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.nav-link {
-  flex: 1;
-  text-align: center;
-  padding: 8px 12px;
-  border-radius: 8px;
-  text-decoration: none;
-  color: #4a148c;
-  font-weight: bold;
-  background-color: transparent;
-  transition: background-color 0.3s ease;
-}
-
-.nav-link.active {
-  background-color: #ffe4f1;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Remove horizontal overflow */
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+/* Hide the bottom navbar on desktop screens */
+@media (min-width: 768px) {
+  .navbar {
+    @apply hidden;
+  }
 }
 
 /* Add media queries for mobile responsiveness */
@@ -256,9 +225,22 @@ body {
   }
 }
 
-/* Hide the bottom navbar on desktop screens */
-@media (min-width: 1024px) {
+/* Add Tailwind CSS styles for a fixed bottom navigation bar */
+.navbar {
+  @apply fixed bottom-0 w-full flex justify-evenly items-center bg-white shadow-lg py-2;
+}
+
+.nav-link {
+  @apply flex flex-col items-center text-gray-600 hover:text-gray-800;
+}
+
+.nav-link span {
+  @apply text-xs;
+}
+
+/* Hide the navbar on desktop screens */
+@media (min-width: 768px) {
   .navbar {
-    display: none;
+    @apply hidden;
   }
 }
