@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .App {
   text-align: center;
 }
@@ -11,6 +15,20 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+.container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.card {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 16px;
 }
 
 .App-header {
@@ -50,5 +68,187 @@
   100% {
     transform: translateY(0px);
     opacity: 0.6;
+  }
+}
+
+/* Add media queries for responsiveness */
+@media (max-width: 768px) {
+  .App-header {
+    font-size: calc(8px + 2vmin);
+    padding: 20px;
+  }
+  .App-link {
+    font-size: 14px;
+  }
+
+  nav {
+    flex-direction: row;
+    gap: 3px; /* Further reduce spacing between tabs */
+    padding: 4px; /* Adjust padding for smaller screens */
+  }
+
+  nav a {
+    font-size: 8px; /* Downsize font further */
+    padding: 3px 6px; /* Adjust padding for smaller tabs */
+  }
+
+  nav div {
+    top: 0.5rem;
+    right: 0.5rem;
+    gap: 5px;
+  }
+}
+
+/* 🌸 Mobile fix for screens smaller than 600px */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  h1, h2, h3 {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .card, .bubble-button {
+    padding: 12px !important;
+    margin: 10px auto;
+    width: 90%;
+    font-size: 14px !important;
+  }
+
+  nav {
+    flex-direction: column !important;
+    gap: 5px;
+    padding: 5px;
+  }
+
+  nav a, nav button {
+    font-size: 12px !important;
+    padding: 6px 8px !important;
+  }
+
+  .emoji-button {
+    font-size: 18px !important;
+    padding: 6px;
+  }
+
+  .tab-nav {
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .poll-container {
+    padding: 16px !important;
+    font-size: 15px;
+  }
+
+  .verse-card {
+    font-size: 14px !important;
+    line-height: 1.4;
+    padding: 16px;
+  }
+}
+
+/* Fix horizontal overflow on mobile */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Update navbar styles to use Tailwind CSS for clean and centered appearance on small screens */
+.navbar {
+  @apply flex flex-wrap justify-center gap-4 bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 p-4 rounded-lg shadow-lg;
+}
+
+.nav-link {
+  @apply px-4 py-2 rounded-lg text-purple-900 font-bold text-sm transition-all;
+}
+
+.nav-link.active {
+  @apply bg-white shadow-md;
+}
+
+.auth-buttons {
+  @apply flex gap-2;
+}
+
+.auth-button {
+  @apply px-4 py-2 rounded-lg font-bold text-sm transition-all;
+}
+
+.auth-button.signup {
+  @apply bg-purple-300 text-white;
+}
+
+.auth-button.login {
+  @apply bg-pink-300 text-white;
+}
+
+.auth-button.logout {
+  @apply bg-red-300 text-white;
+}
+
+.welcome-message {
+  @apply font-bold text-purple-900;
+}
+
+.routes-wrapper {
+  @apply max-w-full overflow-hidden;
+}
+
+/* Ensure the navbar is fully responsive and wraps tabs when needed */
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  background-color: #f3e0ff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+.nav-link {
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #4a148c;
+  font-weight: bold;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link.active {
+  background-color: #ffe4f1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Remove horizontal overflow */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Add media queries for mobile responsiveness */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px;
+  }
+
+  .nav-link {
+    font-size: 14px;
+    padding: 6px 10px;
   }
 }

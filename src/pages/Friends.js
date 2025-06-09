@@ -260,6 +260,21 @@ function Friends() {
           </div>
         ))
       )}
+
+      {/* Media Queries for Responsiveness */}
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .playlistGrid {
+              flex-direction: column;
+              gap: 10px;
+            }
+            .playlistCard {
+              width: 100%;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 }

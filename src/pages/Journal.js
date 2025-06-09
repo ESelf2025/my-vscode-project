@@ -189,6 +189,22 @@ function Journal() {
     }
   };
 
+  /* Add media queries for responsiveness */
+const mediaQueries = `
+  @media (max-width: 768px) {
+    .journal-container {
+      padding: 20px;
+    }
+    .journal-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+`;
+
+const mediaStyleElement = document.createElement("style");
+mediaStyleElement.textContent = mediaQueries;
+document.head.appendChild(mediaStyleElement);
+
   return (
     <div
   style={{

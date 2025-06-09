@@ -514,4 +514,27 @@ const styleElement = document.createElement("style");
 styleElement.textContent = keyframes;
 document.head.appendChild(styleElement);
 
+/* Add media queries for responsiveness */
+const mediaQueries = `
+  @media (max-width: 768px) {
+    .profile-container {
+      padding: 20px;
+    }
+    .bubble-row {
+      flex-direction: column;
+      gap: 20px;
+    }
+    .calendarGrid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .savedGrid {
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+  }
+`;
+
+const mediaStyleElement = document.createElement("style");
+mediaStyleElement.textContent = mediaQueries;
+document.head.appendChild(mediaStyleElement);
+
 export default Profile;
