@@ -49,12 +49,11 @@ function App() {
     );
   }
 
-  // All other normal pages (daughter layout)
   return (
     <div
       style={{
         minHeight: "100vh",
-        padding: "40px",
+        paddingBottom: "80px", // leave space for bottom nav
         background: `
           radial-gradient(circle at 20% 30%, #ffe4f1, transparent 70%),
           radial-gradient(circle at 80% 70%, #f7d9ff, transparent 70%),
@@ -65,8 +64,8 @@ function App() {
         backgroundSize: "cover",
       }}
     >
-      {/* Nav Bar */}
-      <nav className="navbar">
+      {/* Top Nav - hidden on mobile */}
+      <nav className="navbar hidden md:flex justify-center gap-4 mb-4">
         {[
           { path: '/', label: 'Friends' },
           { path: '/Watch', label: 'Watch' },
@@ -83,8 +82,8 @@ function App() {
           </Link>
         ))}
 
-        {/* Login / Register / Logout Section */}
-        <div className="auth-buttons">
+        {/* Auth buttons (desktop only) */}
+        <div className="auth-buttons ml-4">
           {!currentUser ? (
             <>
               <button onClick={() => navigate('/register')} className="auth-button signup">
@@ -96,7 +95,7 @@ function App() {
             </>
           ) : (
             <>
-              <span className="welcome-message">👋 Welcome, {currentUser.email}!</span>
+              <span className="welcome-message">👋 {currentUser.email}</span>
               <button onClick={() => auth.signOut()} className="auth-button logout">
                 Log Out
               </button>
@@ -124,13 +123,13 @@ function App() {
         </Routes>
       </div>
 
-      {/* Bottom Navigation Bar for Mobile Devices */}
-      <div className="fixed bottom-0 left-0 w-full bg-white flex justify-evenly items-center py-3 border-t md:hidden z-50 shadow-lg">
-        <Link to="/" className="text-xl text-gray-600 hover:text-gray-800">🏠</Link>
-        <Link to="/Watch" className="text-xl text-gray-600 hover:text-gray-800">📺</Link>
-        <Link to="/journal" className="text-xl text-gray-600 hover:text-gray-800">📖</Link>
-        <Link to="/bible" className="text-xl text-gray-600 hover:text-gray-800">📓</Link>
-        <Link to="/profile" className="text-xl text-gray-600 hover:text-gray-800">👤</Link>
+      {/* 📱 Instagram-Style Bottom Nav for Mobile */}
+      <div className="fixed bottom-0 left-0 w-full bg-white flex justify-around items-center py-3 border-t md:hidden z-50 shadow-lg">
+        <Link to="/" className="text-xl text-gray-600 hover:text-pink-500">🏠</Link>
+        <Link to="/Watch" className="text-xl text-gray-600 hover:text-pink-500">🎬</Link>
+        <Link to="/journal" className="text-xl text-gray-600 hover:text-pink-500">📖</Link>
+        <Link to="/bible" className="text-xl text-gray-600 hover:text-pink-500">📓</Link>
+        <Link to="/profile" className="text-xl text-gray-600 hover:text-pink-500">👤</Link>
       </div>
     </div>
   );
