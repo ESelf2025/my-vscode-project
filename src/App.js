@@ -51,19 +51,22 @@ function App() {
 
   return (
     <div
-      style={{
-        minHeight: "100vh",
-        paddingBottom: "80px", // leave space for bottom nav
-        background: `
-          radial-gradient(circle at 20% 30%, #ffe4f1, transparent 70%),
-          radial-gradient(circle at 80% 70%, #f7d9ff, transparent 70%),
-          linear-gradient(135deg, #ffeaf4, #f3e0ff)
-        `,
-        backgroundAttachment: "fixed",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-      }}
-    >
+    style={{
+      position: "relative",
+      minHeight: "100vh",
+      paddingBottom: "80px",
+      overflowX: "hidden",
+      background: `
+        radial-gradient(circle at 20% 30%, #ffe4f1, transparent 70%),
+        radial-gradient(circle at 80% 70%, #f7d9ff, transparent 70%),
+        linear-gradient(135deg, #ffeaf4, #f3e0ff)
+      `,
+      backgroundAttachment: "fixed",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+    }}
+  >
+  
       {/* Top Nav - hidden on mobile */}
       <nav className="navbar hidden md:flex justify-center gap-4 mb-4">
         {[
