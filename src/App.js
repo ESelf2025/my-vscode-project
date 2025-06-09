@@ -126,5 +126,12 @@ function App() {
     </div>
   );
 }
+<div className="fixed bottom-0 left-0 w-full bg-white flex justify-around items-center py-3 border-t md:hidden z-50">
+  <button>🏠</button>
+  <button>🔍</button>
+  <button>➕</button>
+  <button>❤️</button>
+  <button>👤</button>
+</div>
 
 export default App;
