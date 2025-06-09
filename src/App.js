@@ -123,15 +123,17 @@ function App() {
           <Route path="/guardian-community" element={<GuardianCommunity />} />
         </Routes>
       </div>
+
+      {/* Bottom Navigation Bar for Mobile Devices */}
+      <div className="fixed bottom-0 left-0 w-full bg-white flex justify-evenly items-center py-3 border-t md:hidden z-50 shadow-lg">
+        <Link to="/" className="text-xl text-gray-600 hover:text-gray-800">🏠</Link>
+        <Link to="/Watch" className="text-xl text-gray-600 hover:text-gray-800">📺</Link>
+        <Link to="/journal" className="text-xl text-gray-600 hover:text-gray-800">📖</Link>
+        <Link to="/bible" className="text-xl text-gray-600 hover:text-gray-800">📓</Link>
+        <Link to="/profile" className="text-xl text-gray-600 hover:text-gray-800">👤</Link>
+      </div>
     </div>
   );
 }
-<div className="fixed bottom-0 left-0 w-full bg-white flex justify-around items-center py-3 border-t md:hidden z-50">
-  <button>🏠</button>
-  <button>🔍</button>
-  <button>➕</button>
-  <button>❤️</button>
-  <button>👤</button>
-</div>
 
 export default App;

@@ -82,7 +82,6 @@ function Friends() {
             margin: 0,
           }}
         >
-          💕 Friends Feed
         </h2>
       </div>
 
