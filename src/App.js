@@ -107,33 +107,37 @@ function App() {
         </div>
       </nav>
 
-      {/* Routes */}
-      <div className="routes-wrapper">
-        <Routes>
-          <Route path="/" element={<Friends />} />
-          <Route path="/Watch" element={<Watch />} />
-          <Route path="/journal" element={<Journal />} />
-          <Route path="/bible" element={<Bible />} />
-          <Route path="/emotions" element={<EmotionPicker />} />
-          <Route path="/emotion/:emotion" element={<EmotionPage />} />
-          <Route path="/upload" element={<VideoUpload />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/plan" element={<PlanPlayer />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/guardian-dashboard" element={<GuardianDashboard />} />
-          <Route path="/guardian-community" element={<GuardianCommunity />} />
-        </Routes>
+      {/* Ensure the bottom navigation is always visible */}
+      <div style={{ paddingBottom: "100px" }}> {/* Added padding to prevent content from overlapping the bottom nav */}
+        {/* Routes */}
+        <div className="routes-wrapper">
+          <Routes>
+            <Route path="/" element={<Friends />} />
+            <Route path="/Watch" element={<Watch />} />
+            <Route path="/journal" element={<Journal />} />
+            <Route path="/bible" element={<Bible />} />
+            <Route path="/emotions" element={<EmotionPicker />} />
+            <Route path="/emotion/:emotion" element={<EmotionPage />} />
+            <Route path="/upload" element={<VideoUpload />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/plan" element={<PlanPlayer />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/guardian-dashboard" element={<GuardianDashboard />} />
+            <Route path="/guardian-community" element={<GuardianCommunity />} />
+          </Routes>
+        </div>
       </div>
 
-      {/* 📱 Instagram-Style Bottom Nav for Mobile */}
-      <div className="fixed bottom-0 left-0 w-full bg-white flex justify-evenly items-center py-3 border-t z-50 shadow-lg md:hidden">
-        <Link to="/" className="text-xl text-gray-600 hover:text-pink-500">🏠</Link>
-        <Link to="/Watch" className="text-xl text-gray-600 hover:text-pink-500">🎬</Link>
-        <Link to="/journal" className="text-xl text-gray-600 hover:text-pink-500">📖</Link>
-        <Link to="/bible" className="text-xl text-gray-600 hover:text-pink-500">📓</Link>
-        <Link to="/profile" className="text-xl text-gray-600 hover:text-pink-500">👤</Link>
+      {/* 📱 IG-style Bottom Nav — FIXED FOR REAL */}
+      <div className="fixed bottom-0 left-0 right-0 w-full z-50 bg-white flex justify-around items-center h-20 border-t">
+        <Link to="/" className="text-3xl">🏠</Link>
+        <Link to="/Watch" className="text-3xl">🎬</Link>
+        <Link to="/journal" className="text-3xl">📓</Link>
+        <Link to="/bible" className="text-3xl">📖</Link>
+        <Link to="/profile" className="text-3xl">👤</Link>
       </div>
+
     </div>
   );
 }
