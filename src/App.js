@@ -54,7 +54,7 @@ function App() {
     style={{
       position: "relative",
       minHeight: "100vh",
-      paddingBottom: "80px",
+      paddingBottom: "80px", // Added padding to prevent content from being covered by the bottom nav
       overflowX: "hidden",
       background: `
         radial-gradient(circle at 20% 30%, #ffe4f1, transparent 70%),
@@ -127,7 +127,7 @@ function App() {
       </div>
 
       {/* 📱 Instagram-Style Bottom Nav for Mobile */}
-      <div className="fixed bottom-0 left-0 w-full bg-white flex justify-around items-center py-3 border-t md:hidden z-50 shadow-lg">
+      <div className="fixed bottom-0 left-0 w-full bg-white flex justify-evenly items-center py-3 border-t z-50 shadow-lg md:hidden">
         <Link to="/" className="text-xl text-gray-600 hover:text-pink-500">🏠</Link>
         <Link to="/Watch" className="text-xl text-gray-600 hover:text-pink-500">🎬</Link>
         <Link to="/journal" className="text-xl text-gray-600 hover:text-pink-500">📖</Link>
