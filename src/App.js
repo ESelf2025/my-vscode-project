@@ -3,6 +3,7 @@ import { Routes, Route, Link, useLocation, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { auth } from "./pages/Firebase";
 import './App.css';
+import BottomNavBar from './BottomNavBar';
 
 import Journal from "./pages/Journal";
 import Friends from "./pages/Friends";
@@ -125,20 +126,14 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/guardian-dashboard" element={<GuardianDashboard />} />
             <Route path="/guardian-community" element={<GuardianCommunity />} />
+
           </Routes>
         </div>
       </div>
 
       {/* 📱 IG-style Bottom Nav — FIXED FOR REAL */}
-      <div className="fixed bottom-0 left-0 right-0 w-full z-50 bg-white flex justify-around items-center h-20 border-t">
-        <Link to="/" className="text-3xl">🏠</Link>
-        <Link to="/Watch" className="text-3xl">🎬</Link>
-        <Link to="/journal" className="text-3xl">📓</Link>
-        <Link to="/bible" className="text-3xl">📖</Link>
-        <Link to="/profile" className="text-3xl">👤</Link>
+<BottomNavBar />
       </div>
-
-    </div>
   );
 }
 
