@@ -107,8 +107,30 @@ function Friends() {
         onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
         onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
       >
-        TAP TO JOURNAL
       </div>
+      <div style={{
+  position: 'absolute',
+  top: '20px',
+  right: '20px',
+  zIndex: 1000,
+}}>
+  <button
+    onClick={() => navigate('/journal')}
+    style={{
+      backgroundColor: '#fceaff',
+      border: 'none',
+      borderRadius: '12px',
+      padding: '10px 14px',
+      fontSize: '20px',
+      fontWeight: 'bold',
+      color: '#b94ec2',
+      boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+      cursor: 'pointer'
+    }}
+  >
+    📔+
+  </button>
+</div>
 
       {/* Poll Section */}
       <div
