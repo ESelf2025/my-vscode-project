@@ -10,6 +10,7 @@ import {
 } from "firebase/firestore";
 import { db } from "./Firebase";
 import { useNavigate } from "react-router-dom";
+import { FaBookOpen } from 'react-icons/fa';
 
 function Friends() {
   const navigate = useNavigate();
@@ -63,79 +64,35 @@ function Friends() {
         overflow: "hidden",
       }}
     >
-      {/* Header */}
+      {/* Top-right Journal + Button */}
       <div
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "12px",
-          marginBottom: "20px",
+          position: 'absolute',
+          top: '20px',
+          right: '20px',
+          zIndex: 1000,
         }}
       >
-        <h2
+        <button
+          onClick={() => navigate('/journal')}
           style={{
-            fontSize: "26px",
-            fontWeight: "700",
-            color: "#d46dd8",
-            fontFamily: "'Poppins', sans-serif",
-            margin: 0,
+            backgroundColor: '#fceaff',
+            border: 'none',
+            borderRadius: '16px',
+            padding: '12px',
+            fontSize: '20px',
+            color: '#b94ec2',
+            boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer'
           }}
         >
-        </h2>
-      
+          <FaBookOpen size={22} style={{ marginRight: '4px' }} />
+          <span style={{ fontSize: '18px', fontWeight: 'bold' }}>+</span>
+        </button>
       </div>
-      <div style={{
-  position: 'absolute',
-  top: '20px',
-  right: '20px',
-  zIndex: 1000,
-}}>
-  <button
-    onClick={() => navigate('/journal')}
-    style={{
-      backgroundColor: '#fceaff',
-      border: 'none',
-      borderRadius: '12px',
-      padding: '10px 14px',
-      fontSize: '20px',
-      fontWeight: 'bold',
-      color: '#b94ec2',
-      boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
-      cursor: 'pointer'
-    }}
-  >
-    Navigate to Journal
-  </button>
-    <div
-  style={{
-    position: 'absolute',
-    top: '20px',
-    right: '20px',
-    zIndex: 1000,
-  }}
->
-  <button
-    onClick={() => navigate('/journal')}
-    style={{
-      backgroundColor: '#fceaff',
-      border: 'none',
-      borderRadius: '16px',
-      padding: '12px',
-      fontSize: '20px',
-      color: '#b94ec2',
-      boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      cursor: 'pointer'
-    }}
-  >
-    <FaBookOpen size={22} style={{ marginRight: '4px' }} />
-    <span style={{ fontSize: '18px', fontWeight: 'bold' }}>+</span>
-  </button>
-</div>
-</div>
 
       {/* Poll Section */}
       <div
