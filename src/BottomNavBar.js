@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaHome, FaVideo, FaBible, FaBookOpen, FaUser } from 'react-icons/fa';
 
 const BottomNavBar = () => {
   return (
     <div style={styles.navBar}>
-      <Link to="/" style={styles.icon}>🏠</Link>
-      <Link to="/watch" style={styles.icon}>🎬</Link>
-      <Link to="/bible" style={styles.icon}>📖</Link>
-      <Link to="/journal" style={styles.icon}>📓</Link>
-      <Link to="/profile" style={styles.icon}>👤</Link>
+      <Link to="/" style={styles.icon}><FaHome /></Link>
+      <Link to="/watch" style={styles.icon}><FaVideo /></Link>
+      <Link to="/bible" style={styles.icon}><FaBible /></Link>
+      <Link to="/journal" style={styles.icon}><FaBookOpen /></Link>
+      <Link to="/profile" style={styles.icon}><FaUser /></Link>
     </div>
   );
 };
@@ -16,18 +17,22 @@ const BottomNavBar = () => {
 const styles = {
   navBar: {
     position: 'fixed',
-    bottom: 0,
-    left: 0,
-    width: '100%',
+    bottom: '20px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    width: '90%',
     backgroundColor: '#fceaff',
-    borderTop: '2px solid #ffcfff',
+    borderRadius: '30px',
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
     display: 'flex',
     justifyContent: 'space-around',
-    padding: '12px 0',
+    alignItems: 'center',
+    padding: '18px 0',
     zIndex: 1000,
   },
   icon: {
-    fontSize: '24px',
+    fontSize: '26px',
+    color: '#b94ec2', // Soft purple-pink
     textDecoration: 'none',
   }
 };
