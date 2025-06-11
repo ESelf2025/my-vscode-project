@@ -83,30 +83,7 @@ function Friends() {
           }}
         >
         </h2>
-      </div>
-
-      {/* Glow Bubble */}
-      <div
-        onClick={() => navigate("/journal")}
-        style={{
-          width: "160px",
-          height: "160px",
-          backgroundColor: "#d6b3ff", // Changed from blue to purple
-          borderRadius: "50%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontFamily: "'Chewy', cursive",
-          fontSize: "24px",
-          color: "#fff",
-          boxShadow: "0 0 30px #d1b3ff", // Changed from blue to purple
-          cursor: "pointer",
-          transition: "transform 0.2s ease-in-out",
-          margin: "20px auto",
-        }}
-        onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-        onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-      >
+      
       </div>
       <div style={{
   position: 'absolute',
@@ -128,8 +105,34 @@ function Friends() {
       cursor: 'pointer'
     }}
   >
-    📔+
+    <div
+  style={{
+    position: 'absolute',
+    top: '20px',
+    right: '20px',
+    zIndex: 1000,
+  }}
+>
+  <button
+    onClick={() => navigate('/journal')}
+    style={{
+      backgroundColor: '#fceaff',
+      border: 'none',
+      borderRadius: '16px',
+      padding: '12px',
+      fontSize: '20px',
+      color: '#b94ec2',
+      boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      cursor: 'pointer'
+    }}
+  >
+    <FaBookOpen size={22} style={{ marginRight: '4px' }} />
+    <span style={{ fontSize: '18px', fontWeight: 'bold' }}>+</span>
   </button>
+</div>
 </div>
 
       {/* Poll Section */}
