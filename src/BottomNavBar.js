@@ -7,7 +7,7 @@ const BottomNavBar = () => {
     <div style={styles.navBar}>
   <Link to="/" style={styles.icon}><FaHome /></Link>
   <Link to="/watch" style={styles.icon}><FaVideo /></Link>
-  <Link to="/journal" style={styles.icon}><FaBookOpen /></Link>   ← 🪄 Put Journal 3rd
+  <Link to="/journal" style={styles.icon}><FaBookOpen /></Link>
   <Link to="/bible" style={styles.icon}><FaBible /></Link>
   <Link to="/profile" style={styles.icon}><FaUser /></Link>
 </div>
