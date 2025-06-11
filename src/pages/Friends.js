@@ -105,6 +105,8 @@ function Friends() {
       cursor: 'pointer'
     }}
   >
+    Navigate to Journal
+  </button>
     <div
   style={{
     position: 'absolute',
