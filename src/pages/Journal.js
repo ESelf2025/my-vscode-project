@@ -245,29 +245,6 @@ document.head.appendChild(mediaStyleElement);
           gap: "40px",
         }}
       >
- {/* TYPE Button */}
- <div
-          onClick={() => setMode("type")}
-          style={{
-            width: "160px",
-            height: "160px",
-            backgroundColor: "#d6b3ff", // Changed from blue to purple
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontFamily: "'Chewy', cursive",
-            fontSize: "24px",
-            color: "#fff",
-            boxShadow: "0 0 30px #d1b3ff", // Changed from blue to purple
-            cursor: "pointer",
-            transition: "transform 0.2s ease-in-out",
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-          onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-        >
-        </div>
-
         </div>
 
       {/* TYPE MODE */}
