@@ -260,21 +260,6 @@ document.head.appendChild(mediaStyleElement);
 
           }}
         >
-          <div
-            style={{
-              backgroundColor: "#b3b3ff",
-              color: "white",
-              padding: "10px 15px",
-              borderRadius: "20px",
-              width: "fit-content",
-              marginBottom: "15px",
-              fontFamily: "'Chewy', cursive"
-
-            }}
-          >
-            whatcha thinking about?
-          </div>
-
           <textarea
             value={entry}
             onChange={(e) => setEntry(e.target.value)}
@@ -290,83 +275,6 @@ document.head.appendChild(mediaStyleElement);
               resize: "none",
             }}
           />
-
-          {/* NEW FEATURE CONTROLS */}
-          <div style={{ marginTop: "15px" }}>
-            {/* Photo Upload */}
-            <div style={{ marginBottom: "10px" }}>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setPhotoFile(e.target.files[0])}
-              />
-            </div>
-
-            {/* Voice Memo Upload */}
-            <div style={{ marginBottom: "10px" }}>
-              <input
-                type="file"
-                accept="audio/*"
-                onChange={(e) => setVoiceMemo(e.target.files[0])}
-              />
-            </div>
-
-            {/* Emoji Button */}
-            <button
-              onClick={() => setEntry(entry + " 😊")}
-              style={{
-                marginRight: "10px",
-                backgroundColor: "#ffd9ec",
-                border: "none",
-                borderRadius: "10px",
-                padding: "5px 10px",
-                cursor: "pointer",
-              }}
-            >
-              😊 Emoji
-            </button>
-
-            {/* Font Selector */}
-            <select
-              onChange={(e) => setCustomFont(e.target.value)}
-              value={customFont}
-              style={{
-                marginRight: "10px",
-                padding: "5px",
-                borderRadius: "5px",
-              }}
-            >
-              <option value="Arial, sans-serif">Arial</option>
-              <option value="'Courier New', monospace">Courier New</option>
-              <option value="'Georgia', serif">Georgia</option>
-            </select>
-
-            {/* Hashtag Input */}
-            <div style={{ marginTop: "10px" }}>
-              <input
-                type="text"
-                placeholder="Enter hashtags, separated by commas"
-                value={hashtags}
-                onChange={(e) => setHashtags(e.target.value)}
-                style={{
-                  width: "100%",
-                  padding: "8px",
-                  borderRadius: "10px",
-                  border: "1px solid #ccc",
-                }}
-              />
-            </div>
-
-            {/* Background Color Picker */}
-            <div style={{ marginTop: "10px" }}>
-              <label style={{ marginRight: "10px" }}>Background Color:</label>
-              <input
-                type="color"
-                value={customBackground}
-                onChange={(e) => setCustomBackground(e.target.value)}
-              />
-            </div>
-          </div>
 
           <div style={{ textAlign: "right", marginTop: "10px" }}>
             <button
