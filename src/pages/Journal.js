@@ -266,7 +266,6 @@ document.head.appendChild(mediaStyleElement);
           onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
           onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
         >
-          TAP TO JOURNAL
         </div>
 
         </div>
