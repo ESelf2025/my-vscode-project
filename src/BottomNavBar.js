@@ -5,13 +5,12 @@ import { FaHome, FaVideo, FaBible, FaBookOpen, FaUser } from 'react-icons/fa';
 const BottomNavBar = () => {
   return (
     <div style={styles.navBar}>
-  <Link to="/" style={styles.icon}><FaHome /></Link>
-  <Link to="/watch" style={styles.icon}><FaVideo /></Link>
-  <Link to="/journal" style={styles.icon}><FaBookOpen /></Link>
-  <Link to="/bible" style={styles.icon}><FaBible /></Link>
-  <Link to="/profile" style={styles.icon}><FaUser /></Link>
-</div>
-
+      <Link to="/" style={styles.icon}><FaHome /></Link>
+      <Link to="/watch" style={styles.icon}><FaVideo /></Link>
+      <Link to="/journal" style={styles.icon}><FaBookOpen /></Link>
+      <Link to="/bible" style={styles.icon}><FaBible /></Link>
+      <Link to="/profile" style={styles.icon}><FaUser /></Link>
+    </div>
   );
 };
 
@@ -22,7 +21,7 @@ const styles = {
     left: '50%',
     transform: 'translateX(-50%)',
     width: '90%',
-    backgroundColor: '#fceaff',
+    background: 'linear-gradient(to right, #fdb7c0, #e0b6f9)', // gradient!
     borderRadius: '30px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
     display: 'flex',
@@ -33,7 +32,7 @@ const styles = {
   },
   icon: {
     fontSize: '26px',
-    color: '#b94ec2', // Soft purple-pink
+    color: '#b94ec2', // matches your app's purple-pink tones
     textDecoration: 'none',
   }
 };
