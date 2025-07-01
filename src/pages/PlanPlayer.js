@@ -1,15 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { collection, query, orderBy, getDocs, addDoc, serverTimestamp } from "firebase/firestore";
+import { useParams } from "react-router-dom";
+import {
+  collection,
+  query,
+  orderBy,
+  getDocs,
+  addDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { db } from "./Firebase";
 
 function PlanPage() {
   const [videos, setVideos] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { id: planId } = useParams(); // 🟣 gets "madeonpurpose", "notaloneneverwere", etc.
 
   useEffect(() => {
     const fetchPlanVideos = async () => {
       try {
-        const q = query(collection(db, "planVideos"), orderBy("day", "asc"));
+        const q = query(
+          collection(db, "planVideos", planId, "days"), // 🟢 look only under this plan
+          orderBy("day", "asc")
+        );
         const querySnapshot = await getDocs(q);
         const videoList = querySnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -23,13 +35,10 @@ function PlanPage() {
     };
 
     fetchPlanVideos();
-  }, []);
+  }, [planId]);
 
   const handleSelect = (index) => {
-    const resetVideos = videos.map((v, i) => ({
-      ...v,
-      playing: false,
-    }));
+    const resetVideos = videos.map((v) => ({ ...v, playing: false }));
     setVideos(resetVideos);
     setCurrentIndex(index);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -42,14 +51,15 @@ function PlanPage() {
   };
 
   const currentVideo = videos[currentIndex];
+
   const handleShare = async () => {
     try {
       await addDoc(collection(db, "posts"), {
         user: "DiaryGirl",
         type: "featuredVideo",
-        videoTitle: "Not Alone – Intro",
-        thumbnailUrl: "https://your-storage-url.com/thumbnail.jpg", // optional preview
-        videoUrl: "https://your-storage-url.com/video.mp4", // 🟢 THE ACTUAL VIDEO FILE!
+        videoTitle: currentVideo?.planTitle + " – Day " + currentVideo?.day,
+        thumbnailUrl: currentVideo?.thumbnailUrl,
+        videoUrl: currentVideo?.videoUrl,
         createdAt: serverTimestamp(),
         reactions: {},
       });
@@ -58,7 +68,7 @@ function PlanPage() {
       console.error("Error sharing:", err);
     }
   };
-  
+
   return (
     <div
       style={{
@@ -69,7 +79,6 @@ function PlanPage() {
         fontFamily: "'Quicksand', sans-serif",
       }}
     >
-      {/* 🎥 Main Video Preview */}
       {currentVideo && (
         <>
           {!currentVideo.playing ? (
@@ -117,30 +126,29 @@ function PlanPage() {
             />
           )}
 
-          {/* ✏️ Title + Description */}
           <h3 style={{ marginTop: "15px", fontSize: "20px", fontWeight: "bold" }}>
             {currentVideo.planTitle}
           </h3>
-          {currentVideo.description && (
-  <div
-    className="devotional-content"
-    style={{
-      backgroundColor: "#fff0f5",
-      padding: "20px",
-      borderRadius: "16px",
-      textAlign: "left",
-      color: "#444",
-      lineHeight: "1.6",
-      maxWidth: "600px",
-      margin: "0 auto 20px",
-      fontSize: "15px",
-      fontFamily: "'Quicksand', sans-serif",
-    }}
-    dangerouslySetInnerHTML={{ __html: currentVideo.description }}
-  />
-)}
 
-          {/* 💓 Buttons */}
+          {currentVideo.description && (
+            <div
+              className="devotional-content"
+              style={{
+                backgroundColor: "#fff0f5",
+                padding: "20px",
+                borderRadius: "16px",
+                textAlign: "left",
+                color: "#444",
+                lineHeight: "1.6",
+                maxWidth: "600px",
+                margin: "0 auto 20px",
+                fontSize: "15px",
+                fontFamily: "'Quicksand', sans-serif",
+              }}
+              dangerouslySetInnerHTML={{ __html: currentVideo.description }}
+            />
+          )}
+
           <div
             style={{
               display: "flex",
@@ -157,7 +165,6 @@ function PlanPage() {
         </>
       )}
 
-      {/* 🎬 Playlist */}
       <h4
         style={{
           fontSize: "20px",

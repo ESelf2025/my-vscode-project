@@ -97,6 +97,8 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/guardian-dashboard" element={<GuardianDashboard />} />
             <Route path="/guardian-community" element={<GuardianCommunity />} />
+            <Route path="/plan/:id" element={<PlanPage />} />
+
           </Routes>
         </div>
       </div>
